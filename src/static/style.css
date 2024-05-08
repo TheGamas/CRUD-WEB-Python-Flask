@@ -1,0 +1,220 @@
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+h2{
+    font-size: small;
+    text-decoration: underline;
+
+}
+
+.container{
+    margin-top: 5vh;
+    width: 100%;
+
+    
+}
+
+.insert-form{
+    margin: auto;
+    width: 80%;
+    border: 1px solid #ccc;
+    padding: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+input{
+    padding: 20px;
+    width: 30vh;
+    height: 1vh;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #555;
+
+}
+
+.modal-input{
+    width: 70%;
+
+}
+
+input:focus{
+    outline: none;
+}
+
+
+.boton-insertar, .boton-eliminar, .boton-editar, .button-close, .button-update {
+    padding: 15px 20px;
+    border: 1px solid #ccc;
+    background-color: #09F;
+    color: #FFF;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-update{
+    background-color: #0F0;
+}
+
+
+
+.boton-insertar:active, .boton-editar:active, .boton-eliminar:active, .button-close:active, .button-update:active {
+    transform: scale(0.90); 
+    transition: transform 0.3s;
+}
+
+header{
+    background-color: #09F;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 0px 0px 10px 0px #333;
+
+}
+
+.navbar {
+    background-color: #09F;
+    color: #fff;
+    padding: 10px;
+}
+
+.navbar-elements {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar-item-ref  {
+    color: #fff;
+    text-decoration: none;
+    padding: 1.5vh;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+    
+}
+
+.navbar-item-ref:focus {
+    background-color: #08F;
+    transform: scale(2); 
+    transition: background-color 0.3s;
+ 
+}
+
+table {
+    margin: auto;
+    border: 1px solid #ccc;
+    margin-top: 3vh;
+    width: 80%;
+    color: #555;
+    font-weight: 100;
+    border-collapse: collapse;
+}
+
+table td, table th {
+    font-weight: 100;
+    margin: 0;
+    border: 1px solid #ccc; /* Añade esto */
+    text-align: center;
+    align-items: center;
+    padding: 1vh;  
+}
+
+table th {
+    background-color: #09F;
+    color: #fff;
+    text-align: center;
+}
+
+table td {
+    background-color: #f5f5f5;
+}
+
+
+
+
+
+.boton-eliminar, .boton-editar, .button-close, .button-update {
+    color: #FFF;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    margin: auto;
+    
+}
+
+.boton-editar, .button-update {
+    background-color: #09F;
+}
+
+.boton-eliminar, .button-close {
+    background-color: #F00;
+}
+
+.boton-editar{
+    width: 5vh;
+}
+
+.boton-eliminar{
+    width: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+    display: flex;
+}
+
+.modal:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    margin: auto;
+    padding: 20px;
+    width: 25%;
+    background-color: #fefefe;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+}
+
+.modal-input{
+    display: block;
+}
+
+.modal-buttons{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}

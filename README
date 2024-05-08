@@ -1,0 +1,16 @@
+# APP CRUD Python Flask
+
+CRUD APP con interfaz web de una tabla(RUTA DE REPARTO)
+
+## Requisitos
+
+- Python
+- Flask
+- FireBird
+
+## Instalación
+
+1. Clona el repositorio:
+2. Ejecuta app.py
+3. Escribe en el buscador localhost:16006
+4. Disfruta

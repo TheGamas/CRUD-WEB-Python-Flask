@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Mini-Proyecto</h1>
+        <h2>Ruta de Reparto</h2>
+    </header>
+
+    <section class="container">
+        <form class="insert-form" action="/add" method="POST">
+            <input type="text" name="NUMERO_DE_RUTA" placeholder="Numero de ruta" required>
+            <input type="number" name="PAQUETES_ENTREGADOS" placeholder="Paquetes entregados" required>
+            <input type="text" name="INCIDENCIA" placeholder="Incidencia">
+            <button class="boton-insertar" type="submit">Guardar</button>
+        </form>
+
+        <table>
+            <thead>
+                <th>#</th>
+                <th>Paquetes entregados</th>
+                <th>Incidencia</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </thead>
+            <tbody>
+                {%for d in data %}
+                    <tr>
+                        <td>{{d.NUMERO_DE_RUTA}}</td>
+                        <td>{{d.PAQUETES_ENTREGADOS}}</td>
+                        <td>{{d.INCIDENCIA}}</td>
+                        <td><a href="#modal{{d.NUMERO_DE_RUTA}}" class="boton-editar">Edit</a></td>
+                        <td>
+                            <form action="/delete/{{d.NUMERO_DE_RUTA}}" method="POST">
+                                <button class="boton-eliminar" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <div id="modal{{d.NUMERO_DE_RUTA}}" class="modal">
+                        <div class="modal-content">
+                            <form class="modal-content" action="/edit/{{d.NUMERO_DE_RUTA}}" method="POST">
+                                <input  class="modal-input" type="number" name="PAQUETES_ENTREGADOS" placeholder="Paquetes entregados" required>
+                                <input class="modal-input" type="text" name="INCIDENCIA" placeholder="Incidencia">    
+                                <section class="modal-buttons">
+                                    <button class="button-update" type="submit">Update</button>
+                                    <a href="#close" class="button-close">Close</a>
+                                </section>
+                            </form>
+                        </div>
+                    </div>  
+                             
+                {%endfor%}
+
+                
+                
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>

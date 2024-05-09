@@ -27,10 +27,27 @@ def add():
     paquetes_entregados = request.form['PAQUETES_ENTREGADOS']
     incidencia = request.form['INCIDENCIA']
 
-    cursor = db.cursor()
-    cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, PAQUETES_ENTREGADOS, INCIDENCIA)" 
-                   + "VALUES (?, ?, ?)", (numero_de_ruta, paquetes_entregados, incidencia))
-    db.commit()
+    if paquetes_entregados and incidencia:
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, PAQUETES_ENTREGADOS, INCIDENCIA)" 
+                    + "VALUES (?, ?, ?)", (numero_de_ruta, paquetes_entregados, incidencia))
+        db.commit()
+    
+    elif paquetes_entregados and not incidencia:
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, PAQUETES_ENTREGADOS)" 
+                    + "VALUES (?, ?)", (numero_de_ruta, paquetes_entregados,))
+        db.commit()
+    elif incidencia and not paquetes_entregados:
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, INCIDENCIA)" 
+                    + "VALUES (?, ?)", (numero_de_ruta, incidencia))
+        db.commit()
+    else:
+        cursor = db.cursor()
+        cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA)" 
+                    + "VALUES (?)", (numero_de_ruta,))
+        db.commit()
     
     return redirect(url_for('home'))
 
@@ -46,9 +63,20 @@ def edit(id):
     paquetes_entregados = request.form['PAQUETES_ENTREGADOS']
     incidencia = request.form['INCIDENCIA']
 
-    cursor = db.cursor()
-    cursor.execute("UPDATE RUTA_DE_REPARTO SET PAQUETES_ENTREGADOS = ?, INCIDENCIA = ? WHERE NUMERO_DE_RUTA = ?", (paquetes_entregados, incidencia, id))
-    db.commit()
+    if paquetes_entregados and incidencia:
+        cursor = db.cursor()
+        cursor.execute("UPDATE RUTA_DE_REPARTO SET PAQUETES_ENTREGADOS = ?, INCIDENCIA = ? WHERE NUMERO_DE_RUTA = ?", (paquetes_entregados, incidencia, id))
+        db.commit()
+    elif paquetes_entregados and not incidencia:
+        cursor = db.cursor()
+        cursor.execute("UPDATE RUTA_DE_REPARTO SET PAQUETES_ENTREGADOS = ? WHERE NUMERO_DE_RUTA = ?", (paquetes_entregados, id))
+        db.commit()
+    elif incidencia and not paquetes_entregados:
+        cursor = db.cursor()
+        cursor.execute("UPDATE RUTA_DE_REPARTO SET INCIDENCIA = ? WHERE NUMERO_DE_RUTA = ?", (incidencia, id))
+        db.commit()
+    else:
+        pass
     
     return redirect(url_for('home'))
 

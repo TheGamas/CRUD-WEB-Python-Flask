@@ -13,9 +13,10 @@
     </header>
 
     <section class="container">
+       
         <form class="insert-form" action="/add" method="POST">
             <input type="text" name="NUMERO_DE_RUTA" placeholder="Numero de ruta" required>
-            <input type="number" name="PAQUETES_ENTREGADOS" placeholder="Paquetes entregados" required>
+            <input type="number" name="PAQUETES_ENTREGADOS" placeholder="Paquetes entregados">
             <input type="text" name="INCIDENCIA" placeholder="Incidencia">
             <button class="boton-insertar" type="submit">Guardar</button>
         </form>
@@ -44,7 +45,7 @@
                     <div id="modal{{d.NUMERO_DE_RUTA}}" class="modal">
                         <div class="modal-content">
                             <form class="modal-content" action="/edit/{{d.NUMERO_DE_RUTA}}" method="POST">
-                                <input  class="modal-input" type="number" name="PAQUETES_ENTREGADOS" placeholder="Paquetes entregados" required>
+                                <input  class="modal-input" type="number" name="PAQUETES_ENTREGADOS" placeholder="Paquetes entregados">
                                 <input class="modal-input" type="text" name="INCIDENCIA" placeholder="Incidencia">    
                                 <section class="modal-buttons">
                                     <button class="button-update" type="submit">Update</button>

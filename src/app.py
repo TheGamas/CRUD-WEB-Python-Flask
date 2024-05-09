@@ -7,7 +7,6 @@ template_dir = os.path.join(template_dir, 'src', 'templates')
 
 app = Flask(__name__, template_folder = template_dir)
 
-
 @app.route('/')
 def home():
     cursor = db.cursor()
@@ -27,28 +26,29 @@ def add():
     paquetes_entregados = request.form['PAQUETES_ENTREGADOS']
     incidencia = request.form['INCIDENCIA']
 
+    cursor = db.cursor()
+    cursor.execute("SELECT NUMERO_DE_RUTA FROM RUTA_DE_REPARTO")
+    all_keys = [row[0] for row in cursor.fetchall()]
+
+    if numero_de_ruta in all_keys:
+        return redirect(url_for('home'))
+    
     if paquetes_entregados and incidencia:
-        cursor = db.cursor()
         cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, PAQUETES_ENTREGADOS, INCIDENCIA)" 
                     + "VALUES (?, ?, ?)", (numero_de_ruta, paquetes_entregados, incidencia))
-        db.commit()
     
     elif paquetes_entregados and not incidencia:
-        cursor = db.cursor()
         cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, PAQUETES_ENTREGADOS)" 
                     + "VALUES (?, ?)", (numero_de_ruta, paquetes_entregados,))
-        db.commit()
     elif incidencia and not paquetes_entregados:
         cursor = db.cursor()
         cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA, INCIDENCIA)" 
                     + "VALUES (?, ?)", (numero_de_ruta, incidencia))
-        db.commit()
     else:
-        cursor = db.cursor()
         cursor.execute("INSERT INTO RUTA_DE_REPARTO (NUMERO_DE_RUTA)" 
                     + "VALUES (?)", (numero_de_ruta,))
-        db.commit()
-    
+        
+    db.commit()
     return redirect(url_for('home'))
 
 @app.route('/delete/<string:id>', methods=['POST'])
